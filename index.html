@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>passwd.gen • Cryptographically Secure Password Generator</title>
+    <meta name="description" content="A high-performance, secure password generator with zero storage and custom entropy visualization.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrap">
+        <header class="header">
+            <svg class="header-icon" viewBox="0 0 28 28" fill="none">
+                <rect x="1" y="5" width="26" height="18" rx="3" stroke="var(--green)" stroke-width="1.5"/>
+                <path d="M5 10l3 4-3 4M10 18h8" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+            <div>
+                <h1>passwd.gen</h1>
+                <span>CRYPTOGRAPHICALLY SECURE • ZERO STORAGE</span>
+            </div>
+        </header>
+
+        <section class="output-box">
+            <div class="pw-text pw-placeholder" id="pwDisplay">// AWAITING GENERATION...</div>
+            <button class="copy-btn" id="copyBtn" onclick="copyPw()">COPY</button>
+        </section>
+
+        <section class="strength-row">
+            <div class="strength-bars" id="strengthBars">
+                <div class="strength-bar" id="b1"></div>
+                <div class="strength-bar" id="b2"></div>
+                <div class="strength-bar" id="b3"></div>
+                <div class="strength-bar" id="b4"></div>
+                <div class="strength-bar" id="b5"></div>
+            </div>
+            <span class="strength-label" id="strengthLabel">--</span>
+        </section>
+
+        <div class="section-label">Password Length</div>
+        <div class="slider-row">
+            <input type="range" min="8" max="128" value="32" step="1" id="lenSlider" oninput="onSlider(this.value)">
+            <span class="len-display" id="lenVal">32</span>
+        </div>
+
+        <div class="section-label">Character Sets</div>
+        <div class="toggles">
+            <button class="toggle-btn active" id="btn-upper" onclick="toggle('upper')">
+                <span class="dot"></span> UPPERCASE
+                <span class="preview">A–Z</span>
+            </button>
+            <button class="toggle-btn active" id="btn-lower" onclick="toggle('lower')">
+                <span class="dot"></span> LOWERCASE
+                <span class="preview">a–z</span>
+            </button>
+            <button class="toggle-btn active" id="btn-digits" onclick="toggle('digits')">
+                <span class="dot"></span> DIGITS
+                <span class="preview">0–9</span>
+            </button>
+            <button class="toggle-btn" id="btn-special" onclick="toggle('special')">
+                <span class="dot"></span> SPECIAL
+                <span class="preview">!@#$</span>
+            </button>
+        </div>
+
+        <div class="divider"></div>
+
+        <button class="special-btn" id="btn-usman" onclick="toggle('usman')">
+            <span class="dot"></span>
+            <span>USMAN'S SPECIAL</span>
+            <span class="face-preview">(-_-) (0_0) [-=-] {^_^}</span>
+        </button>
+
+        <button class="generate-btn" id="generateBtn" onclick="generate()">[ GENERATE PASSWORD ]</button>
+
+        <footer class="meta-row">
+            <span id="entropyInfo">ENTROPY: --</span>
+            <span id="charsetInfo">CHARSET: --</span>
+        </footer>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
